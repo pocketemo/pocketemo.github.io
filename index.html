@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Pocket Emo</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Play Pocket Emo online for free. Create and care for your own emo virtual pet—feed, play, and keep the mood in check. Unblocked fun. No downloads, no login." />
+  <style>
+    :root { --bar-h: 56px; --bg:#0b0f14; --ink:#e7eef7; --muted:#9bb0c3; --accent:#4ad; }
+    * { box-sizing: border-box; }
+    html, body { height:100%; margin:0; background:var(--bg); color:var(--ink); font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif }
+    a { color: var(--accent); text-decoration: none; }
+    header { position: sticky; top:0; z-index:10; height:var(--bar-h); background:#111925; border-bottom:1px solid #1e2a38; display:flex; align-items:center; gap:10px; padding:0 10px; }
+    .spacer { flex:1 }
+    .btn { height:36px; padding:0 12px; border-radius:8px; border:1px solid #2a3f59; background:#17314c; color:#fff; cursor:pointer }
+    .btn:hover { background:#214769 }
+    #player-wrap { position:relative; height:calc(100vh - var(--bar-h)); }
+    #player { width:100%; height:100%; border:0; display:block; background:#000 }
+    .overlay-btn { position:absolute; right:10px; top:10px; opacity:.9 }
+    .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+    /* Info section */
+    article { max-width: 1100px; margin: 40px auto; padding: 0 16px; line-height: 1.6; }
+    h1, h2 { line-height: 1.2; margin: 0 0 .6rem }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.3rem; margin-top: 2rem; }
+    p, li { color: #d2dfec; }
+    .kpi { display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin:16px 0; }
+    .card { background:#101a28; border:1px solid #223246; border-radius:12px; padding:12px 14px; }
+    code, textarea { background:#0f1622; color:#e7eef7; border:1px solid #24364f; border-radius:8px; padding:8px; }
+    textarea { width:100%; min-height:100px; resize:vertical; }
+    .copy-row { display:flex; gap:8px; margin-top:8px; }
+    small.muted { color: var(--muted); }
+  </style>
+  <script src="ruffle.js"></script>
+</head>
+<body>
+  <header>
+    <button class="btn" id="jump-info">Game Info</button>
+    <div class="spacer"></div>
+    <button class="btn" id="fs-top">Fullscreen</button>
+  </header>
+
+  <!-- Fullscreen player -->
+  <main id="player-wrap">
+    <object id="player" data="./pocket-emo.swf" type="application/x-shockwave-flash">
+      <param name="wmode" value="direct" />
+      <param name="allowScriptAccess" value="never" />
+      <param name="allowNetworking" value="internal" />
+      <div style="padding:20px;color:#c8d6e5">
+        This game uses Ruffle to run Flash content. If it doesn’t start, make sure <strong>ruffle.js</strong> and <strong>pocket-emo.swf</strong> are in this same folder.
+      </div>
+    </object>
+    <button class="btn overlay-btn" id="fs-overlay" aria-label="Toggle Fullscreen">⛶ <span class="sr-only">Toggle Fullscreen</span></button>
+  </main>
+
+  <!-- SEO content -->
+  <article id="info">
+    <h1>Pocket Emo</h1>
+    <p class="intro">
+      Adopt a tiny emo and try to keep them (sort of) happy. Feed snacks, play mini-interactions, and learn how mood swings change what your emo says and does. It’s a bite-size virtual pet with a mischievous twist.
+    </p>
+
+    <div class="kpi">
+      <div class="card"><strong>Release:</strong> June 2007</div>
+      <div class="card"><strong>Developer:</strong> MINDistortion</div>
+      <div class="card"><strong>Technology:</strong> Adobe Flash (runs via Ruffle)</div>
+      <div class="card"><strong>Mode:</strong> Single-player, browser</div>
+    </div>
+
+    <h2>About the Game</h2>
+    <p>
+      Pocket Emo is a classic browser toy where you create and care for a customizable emo character.
+      The goal isn’t to max out happiness—it’s to observe and manage their mood. Different actions
+      nudge the emo toward sulky, calm, or cheerful states, unlocking new reactions and lines.
+    </p>
+
+    <h2>How to Play</h2>
+    <ol>
+      <li><strong>Create:</strong> Start the game and customize hair, outfit, and accessories.</li>
+      <li><strong>Care:</strong> Use the on-screen buttons to feed, poke, or interact.</li>
+      <li><strong>Balance:</strong> Watch the mood indicators and vary actions to steer their temperament.</li>
+      <li><strong>Explore:</strong> Leave them alone for a bit—some reactions trigger over time.</li>
+    </ol>
+
+    <h2>Controls</h2>
+    <ul>
+      <li><strong>Mouse:</strong> Click UI buttons to interact; hover for tooltips (where available).</li>
+      <li><strong>Keyboard:</strong> Not required; most interactions are mouse-only.</li>
+    </ul>
+
+    <h2>Tips & Tricks</h2>
+    <ul>
+      <li>Interactions stack—repeat actions can push the emo to extremes (sometimes that’s the point!).</li>
+      <li>If you want more neutral behavior, alternate calming and stimulating actions.</li>
+      <li>Let the game idle for a minute to see passive reactions and new lines.</li>
+    </ul>
+
+    <h2>Save & Troubleshooting</h2>
+    <p>
+      Progress typically saves in your browser storage. Use the same browser and avoid clearing site data.
+      If Ruffle has compatibility issues, try a modern Chromium or Firefox build and keep <em>wmode</em> set to
+      <code>direct</code> as in this page.
+    </p>
+
+    <h2>Embed This Game (Something Extra)</h2>
+    <p>Copy this snippet to embed the page in an iframe on your site:</p>
+    <textarea id="embedCode" readonly></textarea>
+    <div class="copy-row">
+      <button class="btn" id="copyBtn">Copy</button>
+      <small class="muted" id="copyMsg"></small>
+    </div>
+
+    <p class="muted" style="margin-top:1rem">
+      Pocket Emo is a legacy Flash title preserved for modern browsers through the open-source Ruffle emulator.
+    </p>
+  </article>
+
+  <script>
+    (function () {
+      // Fullscreen
+      const wrap = document.getElementById('player-wrap');
+      const btnTop = document.getElementById('fs-top');
+      const btnOverlay = document.getElementById('fs-overlay');
+      function toggleFS() {
+        if (!document.fullscreenElement) {
+          (wrap.requestFullscreen || wrap.webkitRequestFullscreen || wrap.msRequestFullscreen).call(wrap);
+        } else {
+          (document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen).call(document);
+        }
+      }
+      btnTop.addEventListener('click', toggleFS);
+      btnOverlay.addEventListener('click', toggleFS);
+      document.addEventListener('fullscreenchange', () => {
+        btnTop.textContent = document.fullscreenElement ? 'Exit Fullscreen' : 'Fullscreen';
+      });
+
+      // Jump to info
+      document.getElementById('jump-info').addEventListener('click', () => {
+        document.getElementById('info').scrollIntoView({ behavior: 'smooth' });
+      });
+
+      // Build embed code with current URL
+      const url = location.href.split('#')[0];
+      const code = `<iframe src="${url}" title="Pocket Emo" loading="lazy" allowfullscreen style="width:100%;height:600px;border:0;"></iframe>`;
+      const ta = document.getElementById('embedCode');
+      ta.value = code;
+
+      // Copy to clipboard
+      const copyBtn = document.getElementById('copyBtn');
+      const copyMsg = document.getElementById('copyMsg');
+      copyBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(ta.value);
+          copyMsg.textContent = 'Copied!';
+          setTimeout(() => copyMsg.textContent = '', 1500);
+        } catch (e) {
+          ta.select(); document.execCommand('copy');
+          copyMsg.textContent = 'Copied (fallback)';
+          setTimeout(() => copyMsg.textContent = '', 1500);
+        }
+      });
+    })();
+  </script>
+
+  <noscript>This page requires JavaScript for the fullscreen button, smooth scroll, and copy embed.</noscript>
+</body>
+</html>
