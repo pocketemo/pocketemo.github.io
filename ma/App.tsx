@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { AdUnit } from './components/AdUnit';
+import { AdUnit } from './components/AdUnit.tsx';
 
 const App: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -33,9 +33,7 @@ const App: React.FC = () => {
           </p>
         </div>
 
-        {/* Medium Rectangle Ad (300x250) or Large Mobile Ad (320x480) */}
-        {/* Given "No Scroll" on mobile, we'll display the 300x250 to ensure fit, or use the 320x480 if screen height allows. 
-            We prioritize the 320x480 as it's the most immersive for a landing page. */}
+        {/* Primary Ad Unit (320x480) */}
         <div className="relative group">
           <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
           <div className="relative bg-black rounded-lg overflow-hidden shadow-2xl border border-blue-900/50">
@@ -43,12 +41,12 @@ const App: React.FC = () => {
                 src="https://refbanners.com/I?tag=d_5069249m_16797c_&site=5069249&ad=16797" 
                 width={320} 
                 height={480} 
-                scale={0.8} // Scale down slightly to fit small devices without scrolling
+                scale={0.75} // Scale down slightly to ensure it fits mobile screens without scroll
              />
           </div>
         </div>
 
-        {/* Call To Action Button (Fallback/Extra) */}
+        {/* Call To Action Button */}
         <a 
           href="https://refbanners.com/I?tag=d_5069249m_16797c_&site=5069249&ad=16797"
           target="_blank"
