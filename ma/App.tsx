@@ -1,6 +1,42 @@
 
 import React, { useState, useEffect } from 'react';
-import { AdUnit } from './components/AdUnit.tsx';
+
+interface AdUnitProps {
+  src: string;
+  width: number;
+  height: number;
+  scale?: number;
+}
+
+const AdUnit: React.FC<AdUnitProps> = ({ src, width, height, scale = 1 }) => {
+  return (
+    <div 
+      className="flex justify-center items-center overflow-hidden rounded-lg"
+      style={{
+        width: width * scale,
+        height: height * scale,
+      }}
+    >
+      <iframe 
+        scrolling="no" 
+        frameBorder="0" 
+        style={{
+          padding: '0px',
+          margin: '0px',
+          border: '0px',
+          borderStyle: 'none',
+          width: `${width}px`,
+          height: `${height}px`,
+          transform: `scale(${scale})`,
+          transformOrigin: 'center center',
+        }} 
+        width={width} 
+        height={height} 
+        src={src} 
+      />
+    </div>
+  );
+};
 
 const App: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -10,9 +46,13 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="gradient-bg h-screen w-full flex flex-col items-center justify-between text-white overflow-hidden p-4 relative">
-      {/* Top Banner Ad (300x50) */}
-      <div className="w-full flex justify-center pt-2 z-10">
+    <div className="gradient-bg h-full w-full flex flex-col items-center justify-between text-white overflow-hidden p-4 relative">
+      {/* Background Glows */}
+      <div className="absolute top-[-10%] left-[-10%] w-64 h-64 bg-blue-600/20 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-64 h-64 bg-yellow-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+      {/* Top Banner Ad */}
+      <div className="w-full flex justify-center pt-2 z-10 shrink-0">
         <AdUnit 
           src="https://refbanners.com/I?tag=d_5069249m_16785c_&site=5069249&ad=16785" 
           width={300} 
@@ -20,53 +60,50 @@ const App: React.FC = () => {
         />
       </div>
 
-      {/* Main Content Area */}
-      <main className={`flex-1 flex flex-col items-center justify-center space-y-4 transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+      {/* Main Content */}
+      <main className={`flex-1 flex flex-col items-center justify-center space-y-4 transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} w-full max-w-md`}>
         
-        {/* Headline */}
-        <div className="text-center space-y-2 px-2">
-          <h1 className="text-4xl md:text-5xl font-black text-blue-400 drop-shadow-lg leading-tight">
-            مكافأة تصل إلى <span className="text-yellow-400">200$</span>
+        <div className="text-center space-y-1">
+          <h1 className="text-4xl font-black text-blue-400 drop-shadow-md leading-tight">
+            مكافأة حتى <span className="text-yellow-400">200$</span>
           </h1>
-          <p className="text-lg md:text-xl font-bold text-gray-200">
-            سجل الآن في <span className="text-blue-500">1xBet</span> المغرب واستلم مكافأتك!
+          <p className="text-lg font-bold text-gray-300">
+            سجل الآن واستفد من العرض!
           </p>
         </div>
 
-        {/* Primary Ad Unit (320x480) */}
-        <div className="relative group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-          <div className="relative bg-black rounded-lg overflow-hidden shadow-2xl border border-blue-900/50">
+        {/* Central Ad (320x480) - Scaled to fit mobile screens */}
+        <div className="relative group shrink-0">
+          <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+          <div className="relative bg-black rounded-lg overflow-hidden shadow-2xl border border-blue-900/30">
              <AdUnit 
                 src="https://refbanners.com/I?tag=d_5069249m_16797c_&site=5069249&ad=16797" 
                 width={320} 
                 height={480} 
-                scale={0.75} // Scale down slightly to ensure it fits mobile screens without scroll
+                scale={0.7} 
              />
           </div>
         </div>
 
-        {/* Call To Action Button */}
-        <a 
-          href="https://refbanners.com/I?tag=d_5069249m_16797c_&site=5069249&ad=16797"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="animate-pulse-slow w-full max-w-xs py-4 bg-yellow-500 hover:bg-yellow-400 text-black font-black text-2xl rounded-full text-center shadow-[0_0_20px_rgba(234,179,8,0.4)] transition-all transform hover:scale-105 active:scale-95"
-        >
-          سجل واحصل على البونص
-        </a>
+        {/* Action Button */}
+        <div className="w-full px-4 shrink-0">
+          <a 
+            href="https://refbanners.com/I?tag=d_5069249m_16797c_&site=5069249&ad=16797"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full py-4 bg-yellow-500 hover:bg-yellow-400 text-black font-black text-xl rounded-2xl text-center shadow-lg shadow-yellow-500/20 active:scale-95 transition-all"
+          >
+            سجل الآن مجاناً
+          </a>
+        </div>
       </main>
 
-      {/* Footer Info */}
-      <footer className="w-full text-center pb-4 z-10">
-        <p className="text-[10px] text-gray-500 uppercase tracking-widest opacity-60">
-          1xBet Morocco &copy; 2024 | عرض حصري للمستخدمين الجدد
+      {/* Small Footer */}
+      <footer className="w-full text-center pb-2 z-10 shrink-0">
+        <p className="text-[9px] text-gray-500 uppercase tracking-widest">
+          1xBet Morocco &bull; العرض محدود
         </p>
       </footer>
-
-      {/* Background Decorative Elements */}
-      <div className="absolute top-1/4 left-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl -z-10 animate-pulse"></div>
-      <div className="absolute bottom-1/4 right-0 w-40 h-40 bg-cyan-500/10 rounded-full blur-3xl -z-10"></div>
     </div>
   );
 };
